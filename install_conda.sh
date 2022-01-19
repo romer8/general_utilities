@@ -1,17 +1,15 @@
-# Go to home directory
-# sudo apt-get install wget
-# cd ~
-wget -O - https://www.anaconda.com/distribution/ 2>/dev/null | sed -ne 's@.*\(https:\/\/repo\.anaconda\.com\/archive\/Anaconda3-.*-Linux-x86_64\.sh\)\">64-Bit (x86) Installer.*@\1@p' | xargs wget
-anaconda_file_name=$(find . -name "*Anaconda3*")
-echo $anaconda_file_name
-# anaconda_file_name=$(find / -name "*Anaconda3*") -exec chmod +x {} \; -exec bash {} -b -p ~/anaconda\; 2>/dev/null 
+#!/bin/bash
 
-bash $anaconda_file_name -b -p ~/anaconda
+echo "Starting miniconda installation"
 
-rm $anaconda_file_name
-echo 'export PATH="~/anaconda/bin:$PATH"' >> ~/.bashrc 
+mkdir -p ~/miniconda3
 
-# # Refresh basically
-source .bashrc
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
 
-conda update conda
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+rm -rf ~/miniconda3/miniconda.sh
+~/miniconda3/bin/conda init bash
+~/miniconda3/bin/conda init zsh
+~/miniconda3/bin/conda update conda
+
+echo "Finish miniconda installation"
