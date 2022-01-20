@@ -2,7 +2,7 @@
 
 echo "Starting Tethys Installation"
 
-~/miniconda3/bin/create -n tethys -c tethysplatform -c conda-forge tethys-platform
+~/miniconda3/bin/conda create -n tethys -c tethysplatform -c conda-forge tethys-platform
 
 ~/miniconda3/bin/activate tethys
 
